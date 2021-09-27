@@ -1,0 +1,203 @@
+.i-sections{
+
+    $page-width: 1920px;
+    $page-height: 8800px + 100px + 1154px;
+    $page-land-min: 500px;
+
+    width: 100%;
+    position: relative;
+
+    &__assets{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        &--bg{
+            
+            z-index: z(z1);
+            display: flex;
+            flex-direction: column;
+
+            > div{
+                background-repeat: no-repeat;
+                background-size: auto 100%;
+                width: 100%;
+            }
+            &__first{
+                background: #000;
+                background: linear-gradient(0deg, #6184ac 0%, #000 100%);
+                background-image: url(#{$image-path}/bg-sky.jpg);
+                background-position: bottom;
+                height: 8800px;
+                @media (min-width: $page-width) {
+                    background-size: 100% 100%;
+                }
+            }
+            &__mid{
+                background: #91a1b0;
+                background: linear-gradient(0deg, #91a1b0 0%, #739acd 45%, #6184ac 100%);
+                min-height: 100px;
+                flex-grow: 1;
+            }
+            &__last, &__ray, &__area{
+                background-position: top !important;
+                height: 1154px;
+                @media (min-width: $page-width) {
+                    background-size: 100% 100%;
+                }
+            }
+            &__last{
+                background: #91a1b0;
+                background: linear-gradient(0deg, #7f792a 0%, #91a1b0 100%);
+                background-image: url(#{$image-path}/bg-land.jpg);
+            }
+            &__ray{
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                background-image: url(#{$image-path}/bg-ray.png);
+            }
+            &__area{
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                background-image: url(#{$image-path}/bg-area.png);
+            }
+        }
+        &--satellite{
+
+            padding-top: 100px;
+            z-index: z(z2);
+
+            #satellite {
+                position: absolute;
+                z-index: z(z2,2);
+            }
+            svg{
+                width: 100%;
+                height: 100%;
+                z-index: z(z2,1);
+                path{
+                    stroke-width: 0.5px; 
+                    stroke: rgb(255, 255, 255);
+                    opacity: 0.3;
+                }
+                #satellite-path{
+                    opacity: 0;
+                }
+            }
+
+
+        }
+    }
+
+    &__inner{
+        min-height: $page-height;
+        position: relative;
+        z-index: z(z3);
+    }
+}
+
+.i-section{
+    &--contact{
+        padding-top: 450px;
+    }
+    &--proagro{
+        .i-big-circle-image{
+
+        }
+    }
+}
+
+.i-circle-image{
+    border-radius: 100%;
+    position: relative;
+    display: inline-block;
+    border: 15px solid rgba(color(aqua),0.1);
+
+    img{
+        border-radius: 100%;
+        display: inline-block;
+        max-width: 100%;
+        height: auto;
+    }
+
+    &:after{
+        content: '';
+        position: absolute;
+        left: -18%;
+        top: -18%;
+        width: 136%;
+        height: 136%;
+        border: 2px solid rgba(color(aqua),0.1);
+        border-radius: 100%;
+    }
+}
+
+.i-inner-circle-image{
+    border-radius: 100%;
+    position: relative;
+    display: inline-block;
+    border: 15px solid rgba(color(aqua),0.1);
+
+    &__inner{
+        border-radius: 100%;
+        background-color: theme-color(form);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        width: 250px;
+        height: 250px;
+    }
+
+    &:after{
+        content: '';
+        position: absolute;
+        left: -18%;
+        top: -18%;
+        width: 136%;
+        height: 136%;
+        border: 2px solid rgba(color(aqua),0.1);
+        border-radius: 100%;
+    }
+}
+
+.i-big-circle-image{
+    border-radius: 100%;
+    position: relative;
+    display: inline-block;
+
+    border: 2px solid rgba(color(aqua),0.2);
+    padding: 4%;
+
+    img{
+        border-radius: 100%;
+        display: inline-block;
+        max-width: 100%;
+        height: auto;
+    }
+    &:before{
+        content: '';
+        position: absolute;
+        left: -20%;
+        top: -20%;
+        width: 140%;
+        height: 140%;
+        background-color: rgba(color(aqua),0.1);
+        border-radius: 100%;
+    }
+    &:after{
+        content: '';
+        position: absolute;
+        left: -30%;
+        top: -30%;
+        width: 160%;
+        height: 160%;
+        border: 2px solid rgba(color(aqua),0.1);
+        border-radius: 100%;
+    }
+}

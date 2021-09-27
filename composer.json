@@ -1,0 +1,18 @@
+{
+  "name": "husl-example",
+  "type": "html5",
+  "license": "MIT",
+  "description": "HUSL Example.",
+  "homepage": "https://husldigital.com",
+  "authors": [
+    {
+      "name": "Ricardo Maximo",
+      "email": "deluzmax@gmail.com",
+      "homepage": "https://spiga.mx"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "composer/installers": "~1.0"
+  }
+}

@@ -1,0 +1,18 @@
+.i-form{
+	padding: $gutter;
+	border-radius: $border-radius;
+	background-color: theme-color(form);
+	&__title{
+		color: theme-color(text-dark);
+		text-align: center;
+	}
+	input, textarea{
+		border: 1px solid theme-color(border);
+		border-radius: $border-radius / 2;
+	}
+	label{
+		color: theme-color(border);
+		margin-bottom: 0;
+		margin-left: .5rem;
+	}
+}

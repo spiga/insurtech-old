@@ -1,0 +1,21 @@
+{
+  "name": "HUSL Example",
+  "homepage": "https://husldigital.com/",
+  "authors": [
+    "Ricardo Máximo <deluzmax@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "css-hamburgers": "^1.1.3",
+    "jquery": "^3.6.0"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "./scss/bootstrap.scss"
+      ]
+    }
+  }
+}

@@ -1,0 +1,101 @@
+// Grid settings
+$main-sm-columns:       12;
+$sidebar-sm-columns:    4;
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1340px
+);
+
+$font-path: 		"../fonts/";
+$image-path:		"../images/";
+
+$fonts:(
+	avenir: 	'Avenir'
+);
+
+$font-serif:    	'Sans-Serif, serif';
+
+$fonts-fallback:(
+	avenir: 	$font-serif
+);
+
+$font-weights:(
+	book: 			350, //Oblique
+	roman: 			400,
+	medium: 		500, //Oblique
+	black: 			800
+);
+
+$brand-colors:(
+	aqua: 			#f8fbfb,
+	blue: 			#81bed2,
+	green: 			#7bb5b2,
+	space: 			#1a204e,
+	dark: 			#000,
+	light: 			#fff
+);
+
+$alt-colors:(
+	facebook:		#3b5998,
+	twitter:		#55acee,
+	whatsapp:		#43d854,
+	googleplus:		#dc4e41,
+	google:			#ea4335,
+	instagram:		#3f729b,
+	spotify:		#2ebd59,
+	wordpress:		#21759b,
+	youtube:		#cd201f
+);
+
+$colors: map-merge($brand-colors,$alt-colors);
+
+$theme-colors:(
+	bullet: 		color(space),
+	text-dark: 		color(space),
+	title: 			color(blue),
+	card: 			color(green),
+	form: 			color(aqua),
+	border: 		color(blue),
+
+	body-text: 		color(light),
+	body: 			color(dark),
+	link: 			color(light),
+	primary: 		color(light),
+	secondary: 		color(blue)
+);
+
+$link-color: theme-color(link);
+
+$z-indices:(
+	z0: 			0,
+	z1: 			10,
+	z2: 			20,
+	z3: 			30,
+	z4: 			40,
+	z5: 			50,
+	header: 		110,
+	menu:         	120,
+	modal: 			130,
+	loader: 		140
+);
+
+$header-height: 100px;
+$header-height-small: $header-height - 20px;
+$menu_bp: 'xl';
+$menu_bp_before: 'lg';
+
+$font-size-base: 1rem;
+$font-size-root: $font-size-base * 1;
+$h1-font-size: $font-size-base * 2.8;
+$h2-font-size: $font-size-base * 2.3;
+$h3-font-size: $font-size-base * 1.8;
+$h4-font-size: $font-size-base * 1.6;
+
+$border-radius: .5rem;
+
+$hamburger-layer-width: 35px;
+$hamburger-layer-height: 2px;
+$hamburger-layer-color: theme-color(border);

@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap');
+
+$gutter: $grid-gutter-width / 2;
+$gutter2: $grid-gutter-width;
+$gutter3: $grid-gutter-width * 1.5;
+$gutter4: $grid-gutter-width * 2;
+
+
+html, body{
+    @include font(avenir);
+    @include font-weight(roman);
+    color: theme-color(body-text);
+    background-color: theme-color(body);
+    font-size: $font-size-root;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+button, a{
+    text-decoration: none;
+    &:focus, &:active, &:hover {
+        outline: 0;
+        text-decoration: none;
+        color: inherit;
+    }
+}
+
+h1, h2, h3{
+  @include font-weight(black);
+}
+
+::placeholder {
+  color: inherit;
+  opacity: 1;
+}
+:-ms-input-placeholder {
+  color: inherit;
+}
+::-ms-input-placeholder {
+  color: inherit;
+}
+
+@include font-classes();
+@include font-size-classes();
+@include color-classes();
