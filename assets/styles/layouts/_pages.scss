@@ -6,6 +6,7 @@
 
     width: 100%;
     position: relative;
+    overflow: hidden;
 
     &__assets{
         position: absolute;
@@ -274,7 +275,7 @@
         
     }
     &__item{
-        display: flex;
+        display: flex !important;
         flex-direction: row;
         &__text{
             width: 50%;
@@ -282,6 +283,15 @@
             font-size: 1.3em;
             padding: 0 $gutter;
             align-self: center;
+            position: relative;
+            .slick-slide &{
+                position: relative;
+                transition: filter 0.3s ease-in-out;
+                filter: blur(10px);
+            }
+            .slick-active &{
+                filter: blur(0);
+            }
         }
         &__image{
             width: 50%;
@@ -298,6 +308,14 @@
                     display: inline-block;
                     max-width: 100%;
                     height: auto;
+                    .slick-slide &{
+                        position: relative;
+                        transition: filter 0.3s ease-in-out;
+                        filter: blur(30px);
+                    }
+                    .slick-active &{
+                        filter: blur(0);
+                    }
                 }
 
                 &:after{
@@ -321,3 +339,47 @@
     padding: $gutter3;
 }
 
+
+.i-card{
+    display: flex;
+    &__image{
+        width: 40%;
+        margin: $gutter 0 $gutter $gutter;
+        border-radius: $border-radius 0 0 $border-radius;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    &__text{
+        width: 60%;
+        padding: $gutter2 $gutter;
+        margin: 0;
+        background-color: theme-color(card);
+        border-radius: $border-radius;
+        &:after{
+            content: '';
+            display: block;
+            width: 50%;
+            border-bottom: 2px solid color(light);
+            margin: $gutter2 0;
+        }
+    }
+}
+
+.i-section--gestion{
+    margin: 0 50px;
+}
+
+.slick-next, .slick-prev{
+    width: 40px;
+    height: 40px;
+    &:before{
+        font-size: 40px;
+    }
+}
+.slick-next{
+    right: -40px;
+}
+.slick-prev{
+    left: -40px;
+}

@@ -11,7 +11,13 @@ html, body{
     @include font-weight(roman);
     color: theme-color(body-text);
     background-color: theme-color(body);
-    font-size: $font-size-root;
+    font-size: 12px;
+    @include media-breakpoint-up(md) {
+      font-size: 14px;
+    }
+    @include media-breakpoint-up(lg) {
+      font-size: 16px;
+    }
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -44,3 +50,23 @@ h1, h2, h3{
 @include font-classes();
 @include font-size-classes();
 @include color-classes();
+
+
+.pb-10{
+  padding-bottom: 6rem!important;
+}
+.pb-15{
+  padding-bottom: 9rem!important;
+}
+.pb-20{
+  padding-bottom: 12rem!important;
+}
+.pb-25{
+  padding-bottom: 15rem!important;
+}
+.pb-30{
+  padding-bottom: 18rem!important;
+}
+.pb-35{
+  padding-bottom: 21rem!important;
+}

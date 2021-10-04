@@ -8,13 +8,31 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.0.0",
-    "css-hamburgers": "^1.1.3",
-    "jquery": "^3.6.0"
+    "jquery": "^3.6.0",
+    "jquery.easing": "https://github.com/gdsmith/jquery.easing.git#^1.4.2",
+    "slick-carousel": "^1.8.1"
   },
   "overrides": {
     "bootstrap": {
       "main": [
         "./scss/bootstrap.scss"
+      ]
+    },
+    "slick-carousel": {
+      "main": [
+        "./slick/slick.js",
+        "./slick/slick.scss",
+        "./slick/slick-theme.scss",
+        "./slick/ajax-loader.gif",
+        "./slick/fonts/slick.eot",
+        "./slick/fonts/slick.svg",
+        "./slick/fonts/slick.ttf",
+        "./slick/fonts/slick.woff"
+      ]
+    },
+    "jquery.easing": {
+      "main": [
+        "jquery.easing.js"
       ]
     }
   }

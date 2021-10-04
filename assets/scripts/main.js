@@ -14,11 +14,58 @@
 
   // Use this variable to set up the common and page specific functions. If you
   // rename this variable, you will also need to rename the namespace below.
-  var HUSL = {
+  var INSURTECH = {
     // All pages
     'common': {
       init: function() {
         // JavaScript to be fired on all pages
+
+
+        $('.i-feat__inner').slick({
+          draggable: true,
+          autoplay: false,
+          arrows: false,
+          dots: true,
+          fade: true,
+          speed: 300,
+          infinite: true,
+          cssEase: 'ease-in-out',
+          touchThreshold: 100
+        });
+
+        $('.i-feat__inner').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+          var $current = slick.$slides.eq(currentSlide).find('img, .i-feat__item__text'),
+              $next = slick.$slides.eq(nextSlide).find('img, .i-feat__item__text'),
+              direction = nextSlide - currentSlide >= 0 ? -1 : 1;
+
+          $current.css({left:0}).stop(true,true).animate({left:200 * direction},300,'easeInOutSine');
+          $next.css({left:-200 * direction}).stop(true,true).animate({left:0},300,'easeInOutSine');
+        });
+
+        $('.i-section--gestion').slick({
+          draggable: true,
+          autoplay: false,
+          arrows: true,
+          dots: false,
+          fade: true,
+          speed: 300,
+          infinite: false,
+          cssEase: 'ease-in-out',
+          touchThreshold: 100
+        });        
+
+        var tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: '#animation-pin',
+            scrub: true,
+            pin: false
+          },
+          defaults: {ease: "none"}
+        });
+        tl.fromTo('.i-sections__assets--bg__ray', { opacity: 0}, {opacity: 1})
+          .fromTo('.i-sections__assets--bg__area', { opacity: 1}, {opacity: 0})
+          .fromTo('.i-sections__assets--bg__ray', { opacity: 1}, {opacity: 0});
+
 
 
         /*gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
@@ -143,7 +190,7 @@
   var UTIL = {
     fire: function(func, funcname, args) {
       var fire;
-      var namespace = HUSL;
+      var namespace = INSURTECH;
       funcname = (funcname === undefined) ? 'init' : funcname;
       fire = func !== '';
       fire = fire && namespace[func];
