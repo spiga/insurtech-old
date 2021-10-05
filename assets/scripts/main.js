@@ -56,15 +56,17 @@
 
         var tl = gsap.timeline({
           scrollTrigger: {
-            trigger: '#animation-pin',
+            trigger: '.i-sections__assets--bg__area',
             scrub: true,
-            pin: false
+            start: "bottom-=600px bottom",
+            end: "bottom bottom"
           },
           defaults: {ease: "none"}
         });
-        tl.fromTo('.i-sections__assets--bg__ray', { opacity: 0}, {opacity: 1})
-          .fromTo('.i-sections__assets--bg__area', { opacity: 1}, {opacity: 0})
-          .fromTo('.i-sections__assets--bg__ray', { opacity: 1}, {opacity: 0});
+        tl.fromTo('.i-sections__assets--bg__ray > div', { height: 0}, {height: '100%', duration: 3})
+          .to('body',{ duration: 2 }) 
+          .fromTo('.i-sections__assets--bg__area', { opacity: 1}, {opacity: 0, duration: 3})
+          .fromTo('.i-sections__assets--bg__ray > div', { height: '100%'}, {height: 0, duration: 2});
 
 
 
@@ -164,7 +166,7 @@
       },
       finalize: function() {
         setTimeout(function(){
-          //$(window).scrollTop(99999999);
+          $(window).scrollTop(99999999);
         },10);
       }
     },

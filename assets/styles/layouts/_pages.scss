@@ -43,9 +43,10 @@
                 min-height: 100px;
                 flex-grow: 1;
             }
-            &__last, &__ray, &__area{
+            &__last, &__area{
                 background-position: top !important;
                 height: 1154px;
+                width: 100%;
                 @media (min-width: $page-width) {
                     background-size: 100% 100%;
                 }
@@ -59,7 +60,21 @@
                 position: absolute;
                 bottom: 0;
                 left: 0;
-                background-image: url(#{$image-path}/bg-ray.png);
+                height: 1154px;
+                width: 100%;
+                > div{
+                    overflow: hidden;
+                    height: 0;
+                    width: 100%;
+                    > div{
+                        height: 1154px;
+                        width: 100%;
+                        background-image: url(#{$image-path}/bg-ray.png);
+                        background-repeat: no-repeat;
+                        background-size: auto 100%;
+                        background-position: top !important;
+                    }
+                }
             }
             &__area{
                 position: absolute;
