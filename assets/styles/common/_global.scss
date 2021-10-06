@@ -11,10 +11,7 @@ html, body{
     @include font-weight(roman);
     color: theme-color(body-text);
     background-color: theme-color(body);
-    font-size: 12px;
-    @include media-breakpoint-up(md) {
-      font-size: 14px;
-    }
+    font-size: 14px;
     @include media-breakpoint-up(lg) {
       font-size: 16px;
     }

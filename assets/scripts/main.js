@@ -20,6 +20,120 @@
       init: function() {
         // JavaScript to be fired on all pages
 
+        gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, ScrollToPlugin);
+
+        function calc_progress(x, x1, x2, y1, y2){
+          return y1 + (((100*(x - x1)/(x2 - x1))*(y2 - y1))/100);
+        }
+
+        var satellite = {
+          $image: $("#satellite img"),
+          init: function(){
+            var _this = this, 
+                progress = 0;
+            if(this.tween){
+              progress = this.tween.progress();
+              this.tween.kill();
+            }
+            this.tween = gsap.to("#satellite", {
+              scrollTrigger: {
+                trigger: "#satellite-path",
+                start: "top 30%",
+                end: "bottom 90%",
+                scrub: true,
+                //markers: true,
+              },
+              duration: 40,
+              ease: "none",
+              immediateRender: true,
+              motionPath: {
+                path: "#satellite-path",
+                align: "#satellite-path",
+                alignOrigin: [0.5, 0.5],
+                autoRotate: true,
+              }
+            });
+            this.tween.eventCallback("onUpdate", function(){
+              var p = this.progress(), aux = 0.7;
+              if(p < 0.1){
+                aux = calc_progress(p, 0, 0.1, 1, aux);
+              } 
+              if(p > 0.35 && p <= 0.42){
+                aux = calc_progress(p, 0.35, 0.42, aux, 1.2);
+              }
+              if(p > 0.42 && p <= 0.48){
+                aux = calc_progress(p, 0.42, 0.48, 1.2, aux);
+              }
+              if(p > 0.95){
+                aux = calc_progress(p, 0.95, 1, aux, 1);
+              }
+              _this.$image.css({'transform':'scale(' + aux + ')'});
+            });
+            this.tween.progress(progress);
+          }
+        },
+        transitions = {
+          init: function(){
+            
+            this.ray_tl = gsap.timeline({
+              scrollTrigger: {
+                trigger: '.i-sections__assets--bg__area',
+                scrub: true,
+                start: "bottom-=600px bottom",
+                end: "bottom bottom"
+              },
+              defaults: {ease: "none"}
+            });
+            this.ray_tl.fromTo('.i-sections__assets--bg__ray > div', { height: 0}, {height: '100%', duration: 3})
+              .to('body',{ duration: 2 }) 
+              .fromTo('.i-sections__assets--bg__area', { opacity: 1}, {opacity: 0, duration: 3})
+              .fromTo('.i-sections__assets--bg__ray > div', { height: '100%'}, {height: 0, duration: 2});
+
+          }
+        },
+        $sliders = $('.i-feat__inner, .i-section--gestion'),
+        sliders_init_count = 0,
+        loading_count = 0;
+
+        $sliders.on('init', function(event, slick){
+          if(++sliders_init_count >= $sliders.length){
+            transitions.init();
+            satellite.init();
+            setTimeout(function(){
+              if($(window).scrollTop() == 0){
+                $(window).scrollTop($(document).height());
+              }
+              loading_complete();
+            },50);
+          }
+        });
+
+        $('.i-sections').imagesLoaded( { background: '.i-sections__assets--bg__first, .i-sections__assets--bg__last' } )
+          .always( function( instance ) {
+            loading_complete();
+          })
+          /*.progress( function( instance, image ) {
+            var result = image.isLoaded ? 'loaded' : 'broken';
+            console.log( 'image is ' + result + ' for ' + image.img.src );
+          })*/;
+
+        $('html, body').css({
+            overflow: 'hidden',
+            height: '100%'
+        });
+        function loading_complete(){
+          if(++loading_count >= 2){
+            $('.i-loader').fadeOut('slow');
+            $('html, body').css({
+                overflow: 'auto',
+                height: 'auto'
+            });
+          }
+        }
+
+        $(window).resize(function(){
+          satellite.init();
+        });
 
         $('.i-feat__inner').slick({
           draggable: true,
@@ -52,79 +166,7 @@
           infinite: false,
           cssEase: 'ease-in-out',
           touchThreshold: 100
-        });        
-
-        var tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: '.i-sections__assets--bg__area',
-            scrub: true,
-            start: "bottom-=600px bottom",
-            end: "bottom bottom"
-          },
-          defaults: {ease: "none"}
         });
-        tl.fromTo('.i-sections__assets--bg__ray > div', { height: 0}, {height: '100%', duration: 3})
-          .to('body',{ duration: 2 }) 
-          .fromTo('.i-sections__assets--bg__area', { opacity: 1}, {opacity: 0, duration: 3})
-          .fromTo('.i-sections__assets--bg__ray > div', { height: '100%'}, {height: 0, duration: 2});
-
-
-
-        /*gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-
-        var tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: ".line-1",
-              scrub: true,
-              start: "top bottom",
-              end: "top top"
-            }
-          });
-
-        tl.from(".line-1", {scaleX: 0, transformOrigin: "left center", ease: "none"})
-          .to(".panels", {backgroundColor: "#91a1b0"}, 1);*/
-
-        // --- RED PANEL ---
-        /*gsap.from(".line-1", {
-          scrollTrigger: {
-            trigger: ".line-1",
-            scrub: true,
-            start: "top bottom",
-            end: "top top"
-          },
-          scaleX: 0,
-          transformOrigin: "left center", 
-          ease: "none"
-        });*/
-
-
-        /*tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: ".purple",
-              scrub: true,
-              pin: true,
-              start: "top top",
-              end: "+=100%"
-            }
-          });
-
-        tl.from(".purple p", {scale: 0.3, rotation:45, autoAlpha: 0, ease: "power2"})
-          .from(".line-3", {scaleX: 0, transformOrigin: "left center", ease: "none"}, 0)
-          .to(".panels", {backgroundColor: "#91a1b0"}, 0);
-
-        // --- ORANGE PANEL ---
-        gsap.from(".line-2", {
-          scrollTrigger: {
-            trigger: ".orange",
-            scrub: true,
-            pin: true,
-            start: "top top",
-            end: "+=100%"
-          },
-          scaleX: 0, 
-          transformOrigin: "left center", 
-          ease: "none"
-        });*/
 
         /*gsap.utils.toArray("nav a").forEach(function(a) {
           a.addEventListener("click", function(e) {
@@ -133,41 +175,8 @@
           });
         });*/
 
-        gsap.registerPlugin(MotionPathPlugin);
-
-        // The start and end positions in terms of the page scroll
-        var offsetFromTop = innerHeight * 0.25;
-        var pathBB = document.querySelector("#satellite-path").getBoundingClientRect();
-        var startY = 0; //pathBB.top - innerHeight + offsetFromTop;
-        var finishDistance = startY + pathBB.height - offsetFromTop;
-
-        // the animation to use
-        var tween = gsap.to("#satellite", {
-          duration: 5, 
-          paused: true,
-          ease: "none",
-          motionPath: {
-            path: "#satellite-path",
-            align: "#satellite-path",
-            autoRotate: true,
-            alignOrigin: [0.5, 0.5]
-          }    
-        }).pause(0.001);
-        document.addEventListener("scroll", function() {
-          if (!requestId) {
-            requestId = requestAnimationFrame(update);
-          }
-        });
-        update();
-        function update() {
-          tween.progress((scrollY - startY) / finishDistance);
-          requestId = null;
-        }
       },
       finalize: function() {
-        setTimeout(function(){
-          $(window).scrollTop(99999999);
-        },10);
       }
     },
     // Home page

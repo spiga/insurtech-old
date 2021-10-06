@@ -10,7 +10,8 @@
     "bootstrap": "^4.0.0",
     "jquery": "^3.6.0",
     "jquery.easing": "https://github.com/gdsmith/jquery.easing.git#^1.4.2",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "imagesloaded": "^4.1.4"
   },
   "overrides": {
     "bootstrap": {

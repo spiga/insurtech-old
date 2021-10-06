@@ -83,6 +83,26 @@
                 background-image: url(#{$image-path}/bg-area.png);
             }
         }
+        &__sat1{
+            position: absolute;
+            left: 50%;
+            transform-origin: 50% 50%;
+            transform: rotate(84.3537deg);
+            top: -40px;
+            margin-left: -352px;
+            @include media-breakpoint-up(md) {
+                top: 70px;
+                margin-left: -497px;
+            }  
+        }
+        &__sat2{
+            position: absolute;
+            left: 50%;
+            transform-origin: 50% 50%;
+            transform: rotate(103.71deg) scale(0.8);
+            bottom: 780px;
+            margin-left: 40px;
+        }
         &--satellite{
 
             padding-top: 100px;
@@ -227,6 +247,7 @@
         display: flex;
         flex-wrap: wrap;
         text-align: center;
+        justify-content: center;
         > div{
             padding: $gutter2;
         }
@@ -277,28 +298,42 @@
 
 .i-feat{
     position: relative;
+    .slick-list{
+        overflow: initial !important;
+    }
     &__title{
-        position: absolute;
-        left: 0;
-        top: 50%;
-        text-align: right;
-        width: 50%;
-        padding: 0 $gutter;
-        margin-top: -150px;
+        padding: 0 0 $gutter2 0;
+        text-align: center;
+        @include media-breakpoint-up(md) {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            text-align: right;
+            width: 50%;
+            padding: 0 $gutter;
+            margin-top: -150px;
+        }
     }
     &__inner{
         
     }
     &__item{
-        display: flex !important;
-        flex-direction: row;
+        @include media-breakpoint-up(md) {
+            display: flex !important;
+            flex-direction: row;
+        }
         &__text{
-            width: 50%;
-            text-align: right;
+            width: 100%;
             font-size: 1.3em;
-            padding: 0 $gutter;
-            align-self: center;
+            padding: 0 0 $gutter 0;
             position: relative;
+            text-align: center;
+            @include media-breakpoint-up(md) {
+                width: 50%;
+                align-self: center;
+                text-align: right;
+                padding: 0 $gutter;
+            }
             .slick-slide &{
                 position: relative;
                 transition: filter 0.3s ease-in-out;
@@ -307,10 +342,17 @@
             .slick-active &{
                 filter: blur(0);
             }
+            
         }
         &__image{
-            width: 50%;
-            padding: 0 $gutter;
+            width: 100%;
+            padding: 0;
+            text-align: center;
+            @include media-breakpoint-up(md) {
+                width: 50%;
+                text-align: right;
+                padding: 0 $gutter;
+            }
 
             &__inner{
                 border-radius: 100%;
