@@ -27,7 +27,6 @@
         }
 
         function goto_section(section, instant){
-          console.log(section);
           var $section = $('[data-section="'+ section +'"]');
           if ($section.length){
             if(instant === true){
@@ -91,8 +90,51 @@
           }
         },
         transitions = {
+          reveal: function(e, type, delay) {
+            var from = {autoAlpha: 0},
+                to = {
+                  duration: 1.25, 
+                  autoAlpha: 1, 
+                  ease: "expo",
+                  overwrite: "auto",
+                  delay: 0.25 * (parseInt(delay) + 1)
+                },
+                plus = type.substr(-1) === '+';
+            if(plus){
+              type = type.substr(0, type.length-1);
+            }
+
+            e.style.opacity = "0";
+            switch(type){
+              case 'top':
+                from.x = 0;
+                from.y = plus ? -100 : -20;
+              break;
+              case 'right':
+                from.x = plus ? 100 : 20;
+                from.y = 0;
+              break;
+              case 'bottom':
+                from.x = 0;
+                from.y = plus ? 100 : 20;
+              break;
+              case 'left':
+                from.x = plus ? -100 : -20;
+                from.y = 0;
+              break;
+            }
+
+            if(typeof from.x !== 'undefined'){
+              e.style.transform = "translate(" + from.x + "px, " + from.y + "px)";
+              to.x = to.y = 0;
+            }
+            gsap.fromTo(e, from, to);
+          },
+          hide: function(e) {
+            gsap.set(e, {autoAlpha: 0});
+          },
           init: function(){
-            
+            var _this = this;
             this.ray_tl = gsap.timeline({
               scrollTrigger: {
                 trigger: '.i-sections__assets--bg__area',
@@ -107,6 +149,31 @@
               .fromTo('.i-sections__assets--bg__area', { opacity: 1}, {opacity: 0, duration: 3})
               .fromTo('.i-sections__assets--bg__ray > div', { height: '100%'}, {height: 0, duration: 2});
 
+            $("[data-parallax]").each(function(i, e){
+              gsap.to(e, {
+                yPercent: $(e).data('parallax'),
+                ease: "none",
+                scrollTrigger: {
+                  trigger: e,
+                  start: "top bottom",  
+                  end: "bottom top",
+                  scrub: true
+                }, 
+              });
+            });
+
+            $("[data-reveal]").each(function(i, e){
+              var type = $(e).data('reveal'),
+                  delay = $(e).data('reveal-delay') || '0:0';
+              delay = $(window).width() >= 768 ? delay.split(':') : [0,0];
+              _this.hide(e);
+              ScrollTrigger.create({
+                trigger: e,
+                onEnter: function() { _this.reveal(e, type, delay[0]); }, 
+                onEnterBack: function() { _this.reveal(e, type, delay[1]); },
+                onLeave: function() { _this.hide(e); }
+              });
+            });
           }
         },
         $sliders = $('.i-feat__inner, .i-section--gestion'),
@@ -123,14 +190,10 @@
           }
         });
 
-        $('.i-sections').imagesLoaded( { background: '.i-sections__assets--bg__first, .i-sections__assets--bg__last' } )
+        $('.i-sections').imagesLoaded( { background: '.i-sections__assets--bg__first, .i-sections__assets--bg__last, .i-sections__assets__nube4' } )
           .always( function( instance ) {
             loading_complete();
-          })
-          /*.progress( function( instance, image ) {
-            var result = image.isLoaded ? 'loaded' : 'broken';
-            console.log( 'image is ' + result + ' for ' + image.img.src );
-          })*/;
+          });
 
         $('html, body').css({
             overflow: 'hidden',

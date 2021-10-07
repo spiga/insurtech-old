@@ -23,7 +23,6 @@
 
         &--bg{
             
-            z-index: z(z1);
             display: flex;
             flex-direction: column;
 
@@ -108,19 +107,71 @@
             bottom: 780px;
             margin-left: 40px;
         }
+        &__item{
+            position: absolute;
+            left: 50%;
+
+            &--nube1{
+                bottom: 2150px;
+                margin-left: 40px;
+            }
+            &--nube2{
+                bottom: 930px;
+                margin-left: -40px;
+            }
+            &--nube3{
+                bottom: 2300px;
+                left: 0;
+            }
+            &--a1{
+                bottom: 300px;
+                margin-left: -900px;
+            }
+            &--a2{
+                bottom: 1850px;
+                margin-left: (1909 / 2) * -1px;
+            }
+            &--a3{
+                bottom: 3050px;
+                margin-left: (1721 / 2) * -1px;
+            }
+            &--a4{
+                top: 4000px;
+                margin-left: (1909 / 2) * -1px;
+                
+            }
+            &--a5{
+                top: 2000px;
+                margin-left: (1893 / 2) * -1px;
+                
+            }
+            &--a6{
+                top: 10px;
+                margin-left: (1893 / 2) * -1px;
+            }
+        }
+        &__nube4{
+            position: absolute;
+            top: 6240px;
+            left: 0;
+            width: 100%;
+            height: 1334px;
+            
+            background-position: top center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-image: url(#{$image_path}/nube-4.png);
+        }
         &--satellite{
 
             padding-top: 100px;
-            z-index: z(z2);
-
+            
             #satellite {
                 position: absolute;
-                z-index: z(z2,2);
             }
             svg{
                 width: 100%;
                 height: 100%;
-                z-index: z(z2,1);
                 path{
                     stroke-width: 0.5px; 
                     stroke: rgb(255, 255, 255);

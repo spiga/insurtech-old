@@ -12,7 +12,8 @@
     "jquery.easing": "https://github.com/gdsmith/jquery.easing.git#^1.4.2",
     "slick-carousel": "^1.8.1",
     "imagesloaded": "^4.1.4",
-    "css-hamburgers": "^1.1.3"
+    "css-hamburgers": "^1.1.3",
+    "GSAP": "https://github.com/greensock/GSAP.git#3.8.0"
   },
   "overrides": {
     "bootstrap": {
@@ -35,6 +36,14 @@
     "jquery.easing": {
       "main": [
         "jquery.easing.js"
+      ]
+    },
+    "GSAP": {
+      "main": [
+        "./dist/gsap.min.js",
+        "./dist/ScrollTrigger.min.js",
+        "./dist/ScrollToPlugin.min.js",
+        "./dist/MotionPathPlugin.min.js"
       ]
     }
   }
