@@ -19,15 +19,33 @@
     'common': {
       init: function() {
         // JavaScript to be fired on all pages
-
         gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, ScrollToPlugin);
 
-        function calc_progress(x, x1, x2, y1, y2){
-          return y1 + (((100*(x - x1)/(x2 - x1))*(y2 - y1))/100);
+        function toggle_nav( value ){
+          $('html').toggleClass('nav-open', value);
+          $('.i-footer__menu__trigger').toggleClass('is-active', value);
+        }
+
+        function goto_section(section, instant){
+          console.log(section);
+          var $section = $('[data-section="'+ section +'"]');
+          if ($section.length){
+            if(instant === true){
+              $(window).scrollTop($section.offset().top - 50);
+            } else {
+              gsap.to(window, {duration: 0.6, scrollTo: $section.offset().top - 50});
+            }
+            toggle_nav(false);
+            return true;
+          }
+          return false;
         }
 
         var satellite = {
           $image: $("#satellite img"),
+          calc_progress: function(x, x1, x2, y1, y2){
+            return y1 + (((100*(x - x1)/(x2 - x1))*(y2 - y1))/100);
+          },
           init: function(){
             var _this = this, 
                 progress = 0;
@@ -56,16 +74,16 @@
             this.tween.eventCallback("onUpdate", function(){
               var p = this.progress(), aux = 0.7;
               if(p < 0.1){
-                aux = calc_progress(p, 0, 0.1, 1, aux);
+                aux = _this.calc_progress(p, 0, 0.1, 1, aux);
               } 
               if(p > 0.35 && p <= 0.42){
-                aux = calc_progress(p, 0.35, 0.42, aux, 1.2);
+                aux = _this.calc_progress(p, 0.35, 0.42, aux, 1.2);
               }
               if(p > 0.42 && p <= 0.48){
-                aux = calc_progress(p, 0.42, 0.48, 1.2, aux);
+                aux = _this.calc_progress(p, 0.42, 0.48, 1.2, aux);
               }
               if(p > 0.95){
-                aux = calc_progress(p, 0.95, 1, aux, 1);
+                aux = _this.calc_progress(p, 0.95, 1, aux, 1);
               }
               _this.$image.css({'transform':'scale(' + aux + ')'});
             });
@@ -100,11 +118,8 @@
             transitions.init();
             satellite.init();
             setTimeout(function(){
-              if($(window).scrollTop() == 0){
-                $(window).scrollTop($(document).height());
-              }
               loading_complete();
-            },50);
+            },10);
           }
         });
 
@@ -128,11 +143,26 @@
                 overflow: 'auto',
                 height: 'auto'
             });
+            if(!goto_section( window.location.hash, true )){
+              if($(window).scrollTop() == 0){
+                $(window).scrollTop($(document).height());
+              }
+            }
           }
         }
 
         $(window).resize(function(){
           satellite.init();
+        });
+
+        $('.i-footer__menu__trigger').click(function(){
+          toggle_nav(!$('html').hasClass('nav-open'));
+        });
+        $(window).on('hashchange', function(){
+          goto_section( window.location.hash );
+        });
+        $('a[href^="#"]').click(function(){
+          goto_section( $(this).attr('href') );
         });
 
         $('.i-feat__inner').slick({
@@ -167,13 +197,6 @@
           cssEase: 'ease-in-out',
           touchThreshold: 100
         });
-
-        /*gsap.utils.toArray("nav a").forEach(function(a) {
-          a.addEventListener("click", function(e) {
-            e.preventDefault();
-            gsap.to(window, {duration: 1, scrollTo: e.target.getAttribute("href")});
-          });
-        });*/
 
       },
       finalize: function() {

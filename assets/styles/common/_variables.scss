@@ -2,12 +2,23 @@
 $main-sm-columns:       12;
 $sidebar-sm-columns:    4;
 
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1300px
+);
+
 $container-max-widths: (
   sm: 540px,
   md: 720px,
   lg: 960px,
-  xl: 1340px
+  xl: 1140px
 );
+
 
 $font-path: 		"../fonts/";
 $image-path:		"../images/";
@@ -88,8 +99,8 @@ $z-indices:(
 
 $header-height: 100px;
 $header-height-small: $header-height - 20px;
-$menu_bp: 'xl';
-$menu_bp_before: 'lg';
+$menu_bp: 'lg';
+$menu_bp_before: 'md';
 
 $font-size-base: 1rem;
 $font-size-root: $font-size-base * 1;
@@ -101,8 +112,8 @@ $h4-font-size: $font-size-base * 1.6;
 $border-radius: .5rem;
 
 $hamburger-layer-width: 35px;
-$hamburger-layer-height: 2px;
-$hamburger-layer-color: theme-color(border);
+$hamburger-layer-height: 3px;
+$hamburger-layer-color: color(light);
 
 $slick-font-path: $font-path;
 $slick-loader-path: $image-path;

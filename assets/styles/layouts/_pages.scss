@@ -7,6 +7,11 @@
     width: 100%;
     position: relative;
     overflow: hidden;
+    
+    transition: filter 0.4s ease-out;
+    .nav-open &{
+        filter: brightness(0.5);
+    }
 
     &__assets{
         position: absolute;
@@ -350,7 +355,7 @@
             text-align: center;
             @include media-breakpoint-up(md) {
                 width: 50%;
-                text-align: right;
+                text-align: left;
                 padding: 0 $gutter;
             }
 

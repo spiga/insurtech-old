@@ -1,30 +1,55 @@
+.nav-open{
+	&, & body{
+		overflow: hidden !important;
+	}
+}
+
 .i-footer{
 	$menu-width: 100px;
+	$menu-width-bp: 150px;
 	position: fixed;
 	left: 0;
 	bottom: 0;
-	background-color: rgba(color(dark),0.8);
 	height: auto;
 	width: 100%;
 	z-index: z(footer);
+	&__inner{
+		background-color: rgba(color(dark),0.8);
+		height: auto;
+		width: 100%;
+		backdrop-filter: blur(2px);
+	}
+	
 	&__menu-wrapper{
 		position: absolute;
-		right: 0;
+		left: 0;
 		top: 0;
+		width: 100%;
 	}
 	&__menu{
 		position: absolute;
-		right: 0;
 		bottom: 0;
-		width: $menu-width;
-		@include media-breakpoint-up(md) {
-			width: $menu-width;
-		}
 		border-radius: $border-radius $border-radius 0 0;
-		overflow: hidden;
+		overflow: auto;
+		max-height: calc(100vh - 80px);
 		border-left: 1px solid theme-color(menu);
 		background-color: rgba(theme-color(menu),0.1);
 		background: linear-gradient(to right, rgba(theme-color(menu),0.15) 10%, rgba(theme-color(menu),0.05) 90%);
+		backdrop-filter: blur(2px);
+		transition: right 0.4s ease-in-out; 
+		width: $menu-width-bp;
+		right: -$menu-width-bp;
+		@include media-breakpoint-up($menu_bp) {
+			width: $menu-width;
+			right: -$menu-width;
+		}
+		@include media-breakpoint-up(xxl) {
+			right: 0;
+		}
+		.nav-open &{
+			right: 0;
+		}
+
 		&:before{
 			content:'';
 			width: 100%;
@@ -33,31 +58,51 @@
 			background-color: theme-color(menu);
 			background-image: url(#{$image-path}/menu.png);
 			background-position: center;
-			background-size: 80%;
+			background-size: auto 55%;
 			background-repeat: no-repeat;
 		}
+
 		ul{
 			margin: 0;
 			padding: 0;
 			li{
 				display: block;
-				height: 130px;
-    			width: $menu-width;
+				width: 100%;
+				@include media-breakpoint-up($menu_bp) {
+					height: 130px;
+    			}
 				a{
-					display: flex;
-					align-items: center;
-    				justify-content: center;
-					text-align: center;
-					height: 100%;
+					padding: $gutter 0;
+					max-width: 130px;
+    				margin: auto;
+				    display: block;
+				    text-align: center;
+					@include media-breakpoint-up($menu_bp) {
+						display: flex;
+						align-items: center;
+	    				justify-content: center;
+	    				height: 100%;
+	    				padding: 0;
+					}
+					
 					span{
 						display: block;
 						text-transform: uppercase;
-						transform: rotate(90deg);
-						transform-origin: center;
 						@include font-weight(black);
-						font-size: 0.8rem;
+						font-size: 1rem;
+						@include media-breakpoint-up($menu_bp) {
+							font-size: 0.8rem;
+							transform: rotate(90deg);
+							transform-origin: center;
+						}
 					}
 				}
+			}
+		}
+
+		&__trigger{
+			@include media-breakpoint-up(xxl) {
+				display: none;
 			}
 		}
 	}
