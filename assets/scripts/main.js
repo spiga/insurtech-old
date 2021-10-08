@@ -230,12 +230,13 @@
 
         $('.i-feat__inner').slick({
           draggable: true,
-          autoplay: false,
+          autoplay: true,
+          autoplaySpeed: 3000,
           arrows: false,
           dots: true,
           fade: true,
           speed: 300,
-          infinite: true,
+          infinite: false,
           cssEase: 'ease-in-out',
           touchThreshold: 100
         });
@@ -249,7 +250,7 @@
           $next.css({left:-200 * direction}).stop(true,true).animate({left:0},300,'easeInOutSine');
         });
 
-        $('.i-section--gestion').slick({
+        $('.i-section--gestion > .container > div').slick({
           draggable: true,
           autoplay: false,
           arrows: true,
