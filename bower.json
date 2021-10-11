@@ -7,18 +7,20 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "bootstrap": "^4.0.0",
     "jquery": "^3.6.0",
     "jquery.easing": "https://github.com/gdsmith/jquery.easing.git#^1.4.2",
+    "bootstrap": "^4.0.0",
     "slick-carousel": "^1.8.1",
     "imagesloaded": "^4.1.4",
     "css-hamburgers": "^1.1.3",
-    "GSAP": "https://github.com/greensock/GSAP.git#3.8.0"
+    "GSAP": "https://github.com/greensock/GSAP.git#3.8.0",
+    "validate": "validate.js#^0.13.1"
   },
   "overrides": {
     "bootstrap": {
       "main": [
-        "./scss/bootstrap.scss"
+        "./scss/bootstrap.scss",
+        "./dist/js/bootstrap.js"
       ]
     },
     "slick-carousel": {

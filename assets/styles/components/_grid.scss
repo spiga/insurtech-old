@@ -34,19 +34,7 @@
   }
 }
 
-@keyframes ripples {
-  0% {
-    top: 36px;
-    left: 36px;
-    width: 0;
-    height: 0;
-    opacity: 1;
-  }
-  100% {
-    top: 0px;
-    left: 0px;
-    width: 72px;
-    height: 72px;
-    opacity: 0;
-  }
+.modal-content{
+  background-color: theme-color(form);
+  color: theme-color(text-dark);
 }

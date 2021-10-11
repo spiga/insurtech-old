@@ -48,22 +48,102 @@ h1, h2, h3{
 @include font-size-classes();
 @include color-classes();
 
+.color-md--blue{
+  @include media-breakpoint-up(md) {
+    color: color(blue);
+  }
+}
 
 .pb-10{
-  padding-bottom: 6rem!important;
+  padding-bottom: 2rem!important;
+  @include media-breakpoint-up(md) {
+    padding-bottom: 6rem!important;
+  }
 }
 .pb-15{
-  padding-bottom: 9rem!important;
+  padding-bottom: 5rem!important;
+  @include media-breakpoint-up(md) {
+    padding-bottom: 9rem!important;
+  }
 }
 .pb-20{
-  padding-bottom: 12rem!important;
+  padding-bottom: 8rem!important;
+  @include media-breakpoint-up(md) {
+    padding-bottom: 12rem!important;
+  }
 }
 .pb-25{
-  padding-bottom: 15rem!important;
+  padding-bottom: 11rem!important;
+  @include media-breakpoint-up(md) {
+    padding-bottom: 15rem!important;
+  }
 }
 .pb-30{
-  padding-bottom: 18rem!important;
+  padding-bottom: 14rem!important;
+  @include media-breakpoint-up(md) {
+    padding-bottom: 18rem!important;
+  }
 }
 .pb-35{
-  padding-bottom: 21rem!important;
+  padding-bottom: 16rem!important;
+  @include media-breakpoint-up(md) {
+    padding-bottom: 21rem!important;
+  }
+}
+
+@keyframes ripples {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
+}
+
+@keyframes ripples-btn {
+  0% {
+    top: 50%;
+    right: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: calc(50% - 36px);
+    right: 0;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
+}
+
+@keyframes scroll {
+  0%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+    transform: translateY(46px);
+  }
+}
+
+@keyframes blink_1 {
+  0%   { opacity: 1; }
+  30%  { opacity: 1; }
+  70%  { opacity: 0.2; }
+  100% { opacity: 1; }
+}
+@keyframes blink_2 {
+  0%   { opacity: 1; }
+  25%  { opacity: 0.2; }
+  80%  { opacity: 1; }
+  100% { opacity: 1; }
 }
