@@ -29,7 +29,7 @@
             > div{
                 background-repeat: no-repeat;
                 background-size: auto 100%;
-                @media screen and (min-width: 1920px) {
+                @media screen and (min-width: $page-width) {
                     background-size: 100% 100%;
                 }
                 width: 100%;
@@ -51,10 +51,14 @@
                 flex-grow: 1;
             }
             &__last, &__area{
-                background-position: top !important;
-                height: 1154px;
+                height: 600px;
+                background-position: 60% top !important;
+                @include media-breakpoint-up(md) {
+                    height: 1154px;
+                    background-position: top !important;
+                }
                 width: 100%;
-                @media (min-width: $page-width) {
+                @media screen and (min-width: $page-width) {
                     background-size: 100% 100%;
                 }
             }
@@ -67,19 +71,27 @@
                 position: absolute;
                 bottom: 0;
                 left: 0;
-                height: 1154px;
+                height: 600px;
+                @include media-breakpoint-up(md) {
+                    height: 1154px;
+                }
                 width: 100%;
                 > div{
                     overflow: hidden;
                     height: 0;
                     width: 100%;
                     > div{
-                        height: 1154px;
+                        
                         width: 100%;
                         background-image: url(#{$image-path}/bg-ray.png);
                         background-repeat: no-repeat;
                         background-size: auto 100%;
-                        background-position: top;
+                        height: 600px;
+                        background-position: 60% top !important;
+                        @include media-breakpoint-up(md) {
+                            height: 1154px;
+                            background-position: top !important;
+                        }
                     }
                 }
             }
@@ -87,7 +99,7 @@
                 position: absolute;
                 bottom: 0;
                 left: 0;
-                background-position: top;
+
                 background-image: url(#{$image-path}/bg-area.png);
             }
             &__nube4{
@@ -117,8 +129,9 @@
             left: 50%;
             transform-origin: 50% 50%;
             transform: rotate(103.71deg) scale(0.8);
-            bottom: 780px;
-            margin-left: 40px;
+            bottom: 390px;
+            margin-left: -50px;
+            width: 300px;
         }
         &__item{
             position: absolute;
@@ -226,7 +239,10 @@
 
     &__inner{
         min-height: $page-height;
-        padding-bottom: 850px;
+        padding-bottom: 702px;
+        @include media-breakpoint-up(md) {
+            padding-bottom: 850px;
+        }
         position: relative;
         z-index: z(z3);
     }

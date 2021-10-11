@@ -34,7 +34,6 @@
               progress = this.tween.progress();
               this.tween.kill();
             }
-            console.log('satellite init', progress, this.tween);
             this.tween = gsap.to("#satellite", {
               scrollTrigger: {
                 trigger: "#satellite-path",
@@ -122,7 +121,7 @@
               scrollTrigger: {
                 trigger: '.i-sections__assets--bg__area',
                 scrub: true,
-                start: "bottom-=600px bottom",
+                start: $(window).width() >= 768 ? "bottom-=600px bottom" : "bottom-=300px bottom",
                 end: "bottom bottom"
               },
               defaults: {ease: "none"}
