@@ -1,13 +1,13 @@
 {
-  "name": "husl-example",
+  "name": "insurtech",
   "type": "html5",
   "license": "MIT",
-  "description": "HUSL Example.",
-  "homepage": "https://husldigital.com",
+  "description": "INSURTECH",
+  "homepage": "https://insurtech.com",
   "authors": [
     {
-      "name": "Ricardo Maximo",
-      "email": "deluzmax@gmail.com",
+      "name": "Spiga Agency",
+      "email": "hi@spiga.mx",
       "homepage": "https://spiga.mx"
     }
   ],

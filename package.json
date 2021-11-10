@@ -1,15 +1,15 @@
 {
-  "name": "sage",
-  "version": "8.6.0",
-  "author": "Ben Word <ben@benword.com>",
-  "homepage": "https://roots.io/sage/",
+  "name": "insurtech",
+  "version": "1.1.0",
+  "author": "Spiga <hi@spiga.mx>",
+  "homepage": "https://spiga.mx/",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git://github.com/roots/sage.git"
+    "url": "git://github.com/spiga/insurtech.git"
   },
   "bugs": {
-    "url": "https://github.com/roots/sage/issues"
+    "url": "https://github.com/spiga/insurtech/issues"
   },
   "licenses": [
     {
@@ -40,14 +40,19 @@
     "gulp-jshint": "^2.0.1",
     "gulp-less": "^4.0.1",
     "gulp-plumber": "^1.0.1",
+    "gulp-postcss": "^8.0.0",
+    "gulp-purgecss": "^3.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-rev": "^7.1.2",
-    "gulp-sass": "^2.0.1",
+    "gulp-sass": "^4.0.2",
+    "gulp-sass-glob": "^1.1.0",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^2.0.0",
     "imagemin-pngcrush": "^6.0.0",
     "jshint": "^2.9.3",
     "jshint-stylish": "^2.0.1",
+    "postcss-calc": "^7.0.1",
+    "postcss-css-variables": "git+https://github.com/CodyHouse/postcss-css-variables",
     "lazypipe": "^1.0.1",
     "merge-stream": "^1.0.0",
     "minimist": "^1.1.3",

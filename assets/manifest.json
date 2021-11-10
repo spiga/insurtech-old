@@ -11,11 +11,6 @@
         "styles/main.scss"
       ],
       "main": true
-    },
-    "customizer.js": {
-      "files": [
-        "scripts/customizer.js"
-      ]
     }
   },
   "config": {
